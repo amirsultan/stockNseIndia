@@ -28,26 +28,4 @@ nse_list = ['ADANIPORTS','ASIANPAINT','AXISBANK','BAJAJ-AUTO','BAJFINANCE','BAJA
 
 Step 4: Running Python code to extract data and fetch it into csv file
 
-from datetime import date
-from nsepy import get_history
-import time
-import pandas as pd
-nse_list = ['ADANIPORTS','ASIANPAINT','AXISBANK','BAJAJ-AUTO','BAJFINANCE','BAJAJFINSV','BHARTIARTL','INFRATEL','BPCL','BRITANNIA','CIPLA','COALINDIA','DRREDDY','EICHERMOT','GAIL','GRASIM','HCLTECH','HDFC','HDFCBANK','HEROMOTOCO','HINDALCO','HINDUNILVR','ICICIBANK','INDUSINDBK','INFY','IOC','ITC','JSWSTEEL','KOTAKBANK','LT','M&M','MARUTI','NESTLEIND','NTPC','ONGC','POWERGRID','RELIANCE','SHREECEM','SBIN','SUNPHARMA','TCS','TATAMOTORS','TATASTEEL','TECHM','TITAN','ULTRACEMCO','UPL','VEDL','WIPRO','ZEEL']
-stocks = []
-try:
- for i, elem in enumerate(nse_list):
- print(i,elem) " This will Print the stock you are referencing currently. Helps in "keeping a track
-stock = get_history(symbol=elem,
- start=date(2015,1,1),
- end=date(2020,5,15))
- 
- if stock is not None:
- stocks.append(stock)
- 
- time.sleep(10) " NSEpy api throws timeout error if you keep hitting it "continuously, so we are using the delay to avoid it
-stocks = pd.concat(stocks)
- stocks.to_csv(r'50_nifty_stock_data_test_tut1.csv') " Writing stock data in "the CSV file
-except:
- stocks = pd.concat(stocks)
- stocks.to_csv(r'50_nifty_stock_data_test_tut1.csv')
 Once you execute the code, data fetching will start from the API and it will start writing in the CSV file. Once the data writing is complete you can use it for analytics and drawing insights. We will discuss that in the next article.
